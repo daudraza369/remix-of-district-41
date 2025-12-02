@@ -1,12 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { WhyChooseUsSection } from '@/components/sections/WhyChooseUsSection';
+import { CollectionPreviewSection } from '@/components/sections/CollectionPreviewSection';
+import { ServicesSection } from '@/components/sections/ServicesSection';
+import { AboutSnapshotSection } from '@/components/sections/AboutSnapshotSection';
+import { DualCTASection } from '@/components/sections/DualCTASection';
+import { StatsSection } from '@/components/sections/StatsSection';
+import { ClientLogosSection } from '@/components/sections/ClientLogosSection';
+import { PortfolioSection } from '@/components/sections/PortfolioSection';
+import { GallerySection } from '@/components/sections/GallerySection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { TreeConsultationPreview } from '@/components/sections/TreeConsultationPreview';
+import { MaintenanceSection } from '@/components/sections/MaintenanceSection';
+import { ContactSection } from '@/components/sections/ContactSection';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-ivory">
+      <Header />
+      <main>
+        <HeroSection />
+        <WhyChooseUsSection />
+        <CollectionPreviewSection />
+        <ServicesSection />
+        <AboutSnapshotSection />
+        <DualCTASection />
+        <StatsSection />
+        <ClientLogosSection />
+        <PortfolioSection />
+        <GallerySection />
+        <TestimonialsSection />
+        <TreeConsultationPreview />
+        <MaintenanceSection />
+        <ContactSection />
+      </main>
+      <Footer />
     </div>
   );
 };
