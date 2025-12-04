@@ -52,15 +52,25 @@ export function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleConsultation = () => {
     setIsMobileMenuOpen(false);
+    // Check if we're on tree-solutions page with consultation form
+    const consultationForm = document.getElementById('consultation-form');
+    const contactSection = document.getElementById('contact');
+    
+    if (consultationForm) {
+      consultationForm.scrollIntoView({ behavior: 'smooth' });
+    } else if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Navigate to contact page
+      navigate('/contact');
+    }
   };
 
-  const handleDropdownItemClick = (href: string) => {
+  const handleDropdownItemClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    e.stopPropagation();
     setActiveDropdown(null);
     navigate(href);
   };
@@ -135,7 +145,7 @@ export function Header() {
                       {item.children.map((child) => (
                         <button
                           key={child.label}
-                          onClick={() => handleDropdownItemClick(child.href)}
+                          onClick={(e) => handleDropdownItemClick(e, child.href)}
                           className="block w-full text-left px-5 py-3 text-sm text-night-green hover:bg-pear/30 transition-colors duration-200"
                         >
                           {child.label}
@@ -150,7 +160,7 @@ export function Header() {
             <Button
               variant={isScrolled ? 'default' : 'hero'}
               size="sm"
-              onClick={scrollToContact}
+              onClick={handleConsultation}
             >
               Request a Consultation
             </Button>
@@ -214,7 +224,7 @@ export function Header() {
             <Button
               variant="default"
               size="lg"
-              onClick={scrollToContact}
+              onClick={handleConsultation}
               className="mt-6"
             >
               Request a Consultation
