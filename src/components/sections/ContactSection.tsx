@@ -5,8 +5,22 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+
+const contactInfo = {
+  email: 'Sales@district.sa',
+  phone: '+966 056 228 8177',
+  whatsapp: '+966 50 060 6506',
+  address: 'Al Zoubair Ibn Al Awwam, Ar Rawabi, Riyadh 14214',
+  googleMaps: 'https://share.google/OwSIbmaVwv0vXcatO',
+};
+
+const socialLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/districtflora', abbr: 'IG' },
+  { label: 'TikTok', href: 'https://www.tiktok.com/@districtflora', abbr: 'TT' },
+  { label: 'Snapchat', href: '#', abbr: 'SC' },
+];
 
 const projectTypes = [
   'Plantscaping',
@@ -144,55 +158,79 @@ export function ContactSection() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col justify-center"
           >
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-pear" />
-                </div>
-                <div>
-                  <h4 className="text-ivory mb-1">Phone</h4>
-                  <p className="text-stone">[Phone Number Placeholder]</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0">
+            <div className="space-y-6">
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pear/30 transition-colors duration-300">
                   <Mail className="w-5 h-5 text-pear" />
                 </div>
                 <div>
                   <h4 className="text-ivory mb-1">Email</h4>
-                  <p className="text-stone">[Email Placeholder]</p>
+                  <p className="text-stone group-hover:text-pear transition-colors duration-300">{contactInfo.email}</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0">
+              <a
+                href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pear/30 transition-colors duration-300">
+                  <Phone className="w-5 h-5 text-pear" />
+                </div>
+                <div>
+                  <h4 className="text-ivory mb-1">Phone</h4>
+                  <p className="text-stone group-hover:text-pear transition-colors duration-300">{contactInfo.phone}</p>
+                </div>
+              </a>
+
+              <a
+                href={`https://wa.me/${contactInfo.whatsapp.replace(/\s/g, '').replace('+', '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pear/30 transition-colors duration-300">
+                  <MessageCircle className="w-5 h-5 text-pear" />
+                </div>
+                <div>
+                  <h4 className="text-ivory mb-1">WhatsApp</h4>
+                  <p className="text-stone group-hover:text-pear transition-colors duration-300">{contactInfo.whatsapp}</p>
+                </div>
+              </a>
+
+              <a
+                href={contactInfo.googleMaps}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pear/30 transition-colors duration-300">
                   <MapPin className="w-5 h-5 text-pear" />
                 </div>
                 <div>
                   <h4 className="text-ivory mb-1">Location</h4>
-                  <p className="text-stone">[City, Country Placeholder]</p>
+                  <p className="text-stone group-hover:text-pear transition-colors duration-300">{contactInfo.address}</p>
                 </div>
-              </div>
+              </a>
 
               {/* Social Icons */}
               <div className="pt-6 border-t border-ivory/10">
                 <p className="text-stone mb-4">Follow Us</p>
-                <div className="flex gap-4">
-                  <a
-                    href="#"
-                    className="w-12 h-12 rounded-full bg-ivory/10 hover:bg-pear/30 flex items-center justify-center transition-colors duration-300"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="w-5 h-5 text-ivory" />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-12 h-12 rounded-full bg-ivory/10 hover:bg-pear/30 flex items-center justify-center transition-colors duration-300"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="w-5 h-5 text-ivory" />
-                  </a>
+                <div className="flex gap-3">
+                  {socialLinks.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-sm bg-ivory/10 flex items-center justify-center hover:bg-pear hover:text-night-green transition-colors duration-300"
+                      aria-label={social.label}
+                    >
+                      <span className="text-xs font-semibold text-ivory hover:text-night-green">{social.abbr}</span>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
