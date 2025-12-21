@@ -12,6 +12,7 @@ import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Hospitality from "./pages/Hospitality";
+import Flowers from "./pages/Flowers";
 import NotFound from "./pages/NotFound";
 
 // Admin pages
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/hospitality" element={<Hospitality />} />
+            <Route path="/flowers" element={<Flowers />} />
             
             {/* Admin routes */}
             <Route path="/admin/auth" element={<AdminAuth />} />
