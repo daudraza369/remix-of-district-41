@@ -98,12 +98,12 @@ export function Header() {
               alt="District"
               className="h-10 md:h-12 w-auto transition-all duration-500 brightness-0 saturate-100"
               style={{
-                filter: 'invert(92%) sepia(16%) saturate(572%) hue-rotate(27deg) brightness(99%) contrast(88%)'
+                filter: 'invert(90%) sepia(24%) saturate(531%) hue-rotate(31deg) brightness(100%) contrast(89%)'
               }}
             />
             <span 
               className="font-heading text-xs tracking-[0.3em] mt-1 transition-all duration-500 font-semibold"
-              style={{ color: '#C9D88D' }}
+              style={{ color: '#cddb96' }}
             >
               DISTRICT
             </span>
