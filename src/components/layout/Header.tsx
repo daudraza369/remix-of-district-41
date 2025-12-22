@@ -214,56 +214,56 @@ export function Header() {
             )}
           </button>
         </nav>
+      </div>
 
-        {/* Mobile Menu - Full screen solid background */}
-        <div
-          className={cn(
-            'fixed inset-0 bg-ivory z-[55] lg:hidden transition-all duration-500 overflow-y-auto',
-            isMobileMenuOpen
-              ? 'opacity-100 pointer-events-auto visible'
-              : 'opacity-0 pointer-events-none invisible'
-          )}
-        >
-          <div className="flex flex-col items-center justify-center min-h-full gap-5 py-24 px-6">
-            {navItems.map((item, index) => (
-              <div key={item.label} className="text-center">
-                <button
-                  onClick={() => {
-                    handleNavClick(item);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-2xl font-heading text-night-green hover:text-slate-moss transition-colors uppercase tracking-wider"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  {item.label}
-                </button>
-                {item.children && (
-                  <div className="mt-3 space-y-2">
-                    {item.children.map((child) => (
-                      <button
-                        key={child.label}
-                        onClick={() => {
-                          navigate(child.href);
-                          setIsMobileMenuOpen(false);
-                        }}
-                        className="block w-full text-sm font-heading text-slate-moss hover:text-night-green transition-colors uppercase tracking-wider"
-                      >
-                        {child.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <Button
-              variant="default"
-              size="lg"
-              onClick={handleConsultation}
-              className="mt-6 font-heading"
-            >
-              REQUEST A CONSULTATION
-            </Button>
-          </div>
+      {/* Mobile Menu - Full screen solid background - OUTSIDE container for full coverage */}
+      <div
+        className={cn(
+          'fixed inset-0 bg-ivory z-[100] lg:hidden transition-all duration-500 overflow-y-auto',
+          isMobileMenuOpen
+            ? 'opacity-100 pointer-events-auto visible'
+            : 'opacity-0 pointer-events-none invisible'
+        )}
+      >
+        <div className="flex flex-col items-center justify-center min-h-full gap-5 py-24 px-6">
+          {navItems.map((item, index) => (
+            <div key={item.label} className="text-center">
+              <button
+                onClick={() => {
+                  handleNavClick(item);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-2xl font-heading text-night-green hover:text-slate-moss transition-colors uppercase tracking-wider"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                {item.label}
+              </button>
+              {item.children && (
+                <div className="mt-3 space-y-2">
+                  {item.children.map((child) => (
+                    <button
+                      key={child.label}
+                      onClick={() => {
+                        navigate(child.href);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="block w-full text-sm font-heading text-slate-moss hover:text-night-green transition-colors uppercase tracking-wider"
+                    >
+                      {child.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          <Button
+            variant="default"
+            size="lg"
+            onClick={handleConsultation}
+            className="mt-6 font-heading"
+          >
+            REQUEST A CONSULTATION
+          </Button>
         </div>
       </div>
     </header>
