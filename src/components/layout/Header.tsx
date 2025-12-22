@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import logo from '@/assets/district-logo.png';
+import logoMonogram from '@/assets/district-logo.png';
+import logoLockup from '@/assets/district-logo-lockup.png';
 
 const navItems = [
   { label: 'FLOWERS', href: '/flowers' },
@@ -90,25 +91,29 @@ export function Header() {
     >
       <div className="container-luxury px-6 md:px-12 lg:px-20">
         <nav className="flex items-center justify-between">
-          {/* Logo - #cddb96 colored monogram with DISTRICT wordmark in Kalice semi-bold */}
+          {/* Logo - Full lockup at top, monogram only on scroll */}
           <Link to="/" className="relative z-[60] flex flex-col items-center group">
+            {/* Full logo lockup - visible when not scrolled */}
             <img
-              src={logo}
+              src={logoLockup}
+              alt="District Interiors"
+              className={cn(
+                "h-14 md:h-16 w-auto transition-all duration-500",
+                isScrolled ? "opacity-0 h-0 absolute" : "opacity-100"
+              )}
+            />
+            {/* Monogram only - visible when scrolled */}
+            <img
+              src={logoMonogram}
               alt="District"
-              className="h-10 md:h-12 w-auto transition-all duration-500 brightness-0 saturate-100"
+              className={cn(
+                "h-10 md:h-12 w-auto transition-all duration-500 brightness-0 saturate-100",
+                isScrolled ? "opacity-100" : "opacity-0 h-0 absolute"
+              )}
               style={{
                 filter: 'invert(85%) sepia(25%) saturate(400%) hue-rotate(35deg) brightness(105%) contrast(85%)'
               }}
             />
-            <span 
-              className={cn(
-                "font-heading text-xs tracking-[0.3em] mt-1 font-semibold transition-all duration-500",
-                isScrolled ? "opacity-0 h-0 mt-0 overflow-hidden" : "opacity-100"
-              )}
-              style={{ color: '#cddb96' }}
-            >
-              DISTRICT
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
