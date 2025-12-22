@@ -218,10 +218,10 @@ export function Header() {
         {/* Mobile Menu - Full screen solid background */}
         <div
           className={cn(
-            'fixed inset-0 bg-ivory z-50 lg:hidden transition-all duration-500 overflow-y-auto',
+            'fixed inset-0 bg-ivory z-[55] lg:hidden transition-all duration-500 overflow-y-auto',
             isMobileMenuOpen
-              ? 'opacity-100 pointer-events-auto'
-              : 'opacity-0 pointer-events-none'
+              ? 'opacity-100 pointer-events-auto visible'
+              : 'opacity-0 pointer-events-none invisible'
           )}
         >
           <div className="flex flex-col items-center justify-center min-h-full gap-5 py-24 px-6">
