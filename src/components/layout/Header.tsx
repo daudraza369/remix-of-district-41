@@ -123,7 +123,7 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -138,7 +138,7 @@ export function Header() {
                         'flex items-center gap-1 text-sm font-nav font-bold uppercase tracking-wider transition-all duration-300 relative',
                         'before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300',
                         shouldUseTransparentHeader
-                          ? 'text-ivory/90 hover:text-pear before:bg-pear' 
+                          ? 'text-ivory hover:text-pear before:bg-pear drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]' 
                           : 'text-night-green hover:text-slate-moss before:bg-night-green',
                         activeDropdown === item.label && (shouldUseTransparentHeader ? 'text-pear' : 'text-slate-moss'),
                         'hover:before:scale-x-100 hover:before:origin-left'
@@ -157,7 +157,7 @@ export function Header() {
                         'flex items-center gap-1 text-sm font-nav font-bold uppercase tracking-wider transition-all duration-300 relative',
                         'before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300',
                         shouldUseTransparentHeader
-                          ? 'text-ivory/90 hover:text-pear before:bg-pear' 
+                          ? 'text-ivory hover:text-pear before:bg-pear drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]' 
                           : 'text-night-green hover:text-slate-moss before:bg-night-green',
                         'hover:before:scale-x-100 hover:before:origin-left'
                       )}
