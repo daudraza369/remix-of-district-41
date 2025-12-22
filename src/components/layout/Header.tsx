@@ -97,7 +97,7 @@ export function Header() {
               alt="District"
               className="h-10 md:h-12 w-auto transition-all duration-500 brightness-0 saturate-100"
               style={{
-                filter: 'invert(88%) sepia(18%) saturate(456%) hue-rotate(32deg) brightness(101%) contrast(90%)'
+                filter: 'invert(85%) sepia(25%) saturate(400%) hue-rotate(35deg) brightness(105%) contrast(85%)'
               }}
             />
             <span 
