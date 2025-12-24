@@ -11,7 +11,7 @@ const slides = [
     image: heroImage,
     title: 'SPACES THAT BREATHE',
     subtitle: 'Where Architecture Meets Nature',
-    description: 'We don\'t just add plants—we engineer environments that elevate human experience, productivity, and well-being.',
+    description: 'We don\'t just add plants. We engineer environments that elevate human experience, productivity, and well-being.',
   },
   {
     image: hotelAtriumImg,

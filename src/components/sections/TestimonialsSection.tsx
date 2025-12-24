@@ -29,7 +29,7 @@ const fallbackTestimonials: Testimonial[] = [
   },
   {
     id: '3',
-    quote: "They didn't just add plants—they created an atmosphere. Our restaurant feels completely transformed, and customers notice the difference.",
+    quote: "They didn't just add plants, they created an atmosphere. Our restaurant feels completely transformed, and customers notice the difference.",
     client_name: "Layla Hassan",
     role: "Owner",
     company: "Naya Restaurant",

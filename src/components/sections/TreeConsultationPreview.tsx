@@ -54,7 +54,7 @@ export function TreeConsultationPreview() {
             </h2>
             
             <p className="text-xl text-stone/90 mb-4">
-              From concept to creation—trees tailored to your exact specifications.
+              From concept to creation: trees tailored to your exact specifications.
             </p>
             
             <p className="text-body text-stone/70 leading-relaxed mb-8">
