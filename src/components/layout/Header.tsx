@@ -121,8 +121,8 @@ export function Header() {
               />
             </Link>
 
-            {/* Desktop Navigation - Centered */}
-            <div className="hidden lg:flex items-center justify-center flex-1 gap-4 xl:gap-6 2xl:gap-8">
+            {/* Desktop Navigation - Centered with padding to avoid CTA overlap */}
+            <div className="hidden lg:flex items-center justify-center flex-1 gap-3 xl:gap-5 2xl:gap-7 px-4 xl:px-8">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -312,7 +312,7 @@ export function Header() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="absolute top-8 left-8"
             >
-              <img src={logoLockup} alt="District Interiors" className="h-14 w-auto" />
+              <img src={logoBrandmarkPear} alt="District Interiors" className="h-14 w-auto" />
             </motion.div>
 
             {/* Menu Content - Centered */}
