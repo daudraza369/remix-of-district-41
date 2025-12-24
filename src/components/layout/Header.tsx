@@ -15,7 +15,7 @@ const HERO_PAGES = ["/", "/flowers", "/hospitality", "/projects", "/tree-solutio
 const navItems = [
   { label: "FLOWERS", href: "/flowers" },
   {
-    label: "INTERIORS",
+    label: "Greenery",
     href: "/services",
     children: [
       { label: "PLANTSCAPING", href: "/services/plantscaping" },
