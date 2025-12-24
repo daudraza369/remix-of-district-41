@@ -1,33 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import logoBrandmark from '@/assets/district-brandmark.png';
-import logoBrandmarkNightGreen from '@/assets/district-brandmark-night-green.png';
-import logoLockup from '@/assets/district-logo-lockup.png';
-import logoLockupNightGreen from '@/assets/district-logo-lockup-night-green.png';
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import logoBrandmark from "@/assets/district-brandmark.png";
+import logoBrandmarkNightGreen from "@/assets/district-brandmark-night-green.png";
+import logoLockup from "@/assets/district-logo-lockup.png";
+import logoLockupNightGreen from "@/assets/district-logo-lockup-night-green.png";
 
 // Pages that have dark hero sections where transparent header works well
-const HERO_PAGES = ['/', '/flowers', '/hospitality', '/projects', '/tree-solutions'];
+const HERO_PAGES = ["/", "/flowers", "/hospitality", "/projects", "/tree-solutions"];
 
 const navItems = [
-  { label: 'FLOWERS', href: '/flowers' },
+  { label: "FLOWERS", href: "/flowers" },
   {
-    label: 'INTERIORS',
-    href: '/services',
+    label: "INTERIORS",
+    href: "/services",
     children: [
-      { label: 'PLANTSCAPING', href: '/services/plantscaping' },
-      { label: 'TREE SOLUTIONS', href: '/tree-solutions' },
-      { label: 'PLANT MAINTENANCE', href: '/services/maintenance' },
-      { label: 'CUSTOM PLANTERS', href: '/services/planters' },
-      { label: 'GREEN WALLS', href: '/services/green-walls' },
+      { label: "PLANTSCAPING", href: "/services/plantscaping" },
+      { label: "TREE SOLUTIONS", href: "/tree-solutions" },
+      { label: "PLANT MAINTENANCE", href: "/services/maintenance" },
+      { label: "CUSTOM PLANTERS", href: "/services/planters" },
+      { label: "GREEN WALLS", href: "/services/green-walls" },
     ],
   },
-  { label: 'HOSPITALITY', href: '/hospitality' },
-  { label: 'OUR COLLECTION', href: '/collection' },
-  { label: 'PROJECTS', href: '/projects' },
+  { label: "HOSPITALITY", href: "/hospitality" },
+  { label: "COLLECTION", href: "/collection" },
+  { label: "PROJECTS", href: "/projects" },
 ];
 
 export function Header() {
@@ -36,7 +36,7 @@ export function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   // Determine if current page has a dark hero that works with transparent header
   const hasHeroSection = HERO_PAGES.includes(location.pathname);
   const shouldUseTransparentHeader = hasHeroSection && !isScrolled;
@@ -45,25 +45,25 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
 
   const handleConsultation = () => {
     setIsMobileMenuOpen(false);
-    navigate('/contact');
+    navigate("/contact");
   };
 
   const handleDropdownItemClick = (e: React.MouseEvent, href: string) => {
@@ -73,7 +73,7 @@ export function Header() {
     navigate(href);
   };
 
-  const handleNavClick = (item: typeof navItems[0]) => {
+  const handleNavClick = (item: (typeof navItems)[0]) => {
     navigate(item.href);
   };
 
@@ -82,15 +82,16 @@ export function Header() {
       {/* Main Header */}
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-[1000] transition-all duration-700 ease-out',
+          "fixed top-0 left-0 right-0 z-[1000] transition-all duration-700 ease-out",
           isScrolled || !hasHeroSection
-            ? 'py-3 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-b border-ivory/20'
-            : 'py-5 bg-transparent'
+            ? "py-3 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-b border-ivory/20"
+            : "py-5 bg-transparent",
         )}
         style={{
-          background: (isScrolled || !hasHeroSection)
-            ? 'linear-gradient(135deg, hsla(60, 3%, 78%, 0.75) 0%, hsla(60, 30%, 98%, 0.6) 50%, hsla(155, 22%, 16%, 0.2) 100%)'
-            : 'transparent'
+          background:
+            isScrolled || !hasHeroSection
+              ? "linear-gradient(135deg, hsla(60, 3%, 78%, 0.75) 0%, hsla(60, 30%, 98%, 0.6) 50%, hsla(155, 22%, 16%, 0.2) 100%)"
+              : "transparent",
         }}
       >
         <div className="container-luxury px-6 md:px-12 lg:px-20">
@@ -102,7 +103,7 @@ export function Header() {
                 alt="District Interiors"
                 className={cn(
                   "h-16 md:h-18 lg:h-20 xl:h-22 w-auto transition-all duration-500",
-                  isScrolled ? "opacity-0 h-0 absolute" : "opacity-100"
+                  isScrolled ? "opacity-0 h-0 absolute" : "opacity-100",
                 )}
               />
               <img
@@ -110,7 +111,7 @@ export function Header() {
                 alt="District"
                 className={cn(
                   "h-10 md:h-11 lg:h-12 w-auto transition-all duration-500",
-                  isScrolled ? "opacity-100" : "opacity-0 h-0 absolute"
+                  isScrolled ? "opacity-100" : "opacity-0 h-0 absolute",
                 )}
               />
             </Link>
@@ -128,36 +129,38 @@ export function Header() {
                     <button
                       onClick={() => handleNavClick(item)}
                       className={cn(
-                        'flex items-center gap-1.5 font-nav font-bold uppercase tracking-[0.12em] transition-all duration-300 relative',
-                        'text-[14px] xl:text-[15px] 2xl:text-[16px]',
-                        'before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[1.5px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300',
+                        "flex items-center gap-1.5 font-nav font-bold uppercase tracking-[0.12em] transition-all duration-300 relative",
+                        "text-[14px] xl:text-[15px] 2xl:text-[16px]",
+                        "before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[1.5px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300",
                         shouldUseTransparentHeader
-                          ? 'text-ivory hover:text-pear before:bg-pear' 
-                          : 'text-night-green hover:text-slate-moss before:bg-night-green',
-                        activeDropdown === item.label && (shouldUseTransparentHeader ? 'text-pear' : 'text-slate-moss'),
-                        'hover:before:scale-x-100 hover:before:origin-left'
+                          ? "text-ivory hover:text-pear before:bg-pear"
+                          : "text-night-green hover:text-slate-moss before:bg-night-green",
+                        activeDropdown === item.label && (shouldUseTransparentHeader ? "text-pear" : "text-slate-moss"),
+                        "hover:before:scale-x-100 hover:before:origin-left",
                       )}
-                      style={shouldUseTransparentHeader ? { textShadow: '0 2px 8px rgba(0,0,0,0.4)' } : undefined}
+                      style={shouldUseTransparentHeader ? { textShadow: "0 2px 8px rgba(0,0,0,0.4)" } : undefined}
                     >
                       {item.label}
-                      <ChevronDown className={cn(
-                        'w-4 h-4 xl:w-[18px] xl:h-[18px] transition-transform duration-300',
-                        activeDropdown === item.label && 'rotate-180'
-                      )} />
+                      <ChevronDown
+                        className={cn(
+                          "w-4 h-4 xl:w-[18px] xl:h-[18px] transition-transform duration-300",
+                          activeDropdown === item.label && "rotate-180",
+                        )}
+                      />
                     </button>
                   ) : (
                     <button
                       onClick={() => handleNavClick(item)}
                       className={cn(
-                        'flex items-center gap-1 font-nav font-bold uppercase tracking-[0.12em] transition-all duration-300 relative whitespace-nowrap',
-                        'text-[14px] xl:text-[15px] 2xl:text-[16px]',
-                        'before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[1.5px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300',
+                        "flex items-center gap-1 font-nav font-bold uppercase tracking-[0.12em] transition-all duration-300 relative whitespace-nowrap",
+                        "text-[14px] xl:text-[15px] 2xl:text-[16px]",
+                        "before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[1.5px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300",
                         shouldUseTransparentHeader
-                          ? 'text-ivory hover:text-pear before:bg-pear' 
-                          : 'text-night-green hover:text-slate-moss before:bg-night-green',
-                        'hover:before:scale-x-100 hover:before:origin-left'
+                          ? "text-ivory hover:text-pear before:bg-pear"
+                          : "text-night-green hover:text-slate-moss before:bg-night-green",
+                        "hover:before:scale-x-100 hover:before:origin-left",
                       )}
-                      style={shouldUseTransparentHeader ? { textShadow: '0 2px 8px rgba(0,0,0,0.4)' } : undefined}
+                      style={shouldUseTransparentHeader ? { textShadow: "0 2px 8px rgba(0,0,0,0.4)" } : undefined}
                     >
                       {item.label}
                     </button>
@@ -167,19 +170,18 @@ export function Header() {
                   {item.children && activeDropdown === item.label && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 animate-fade-in z-[1500]">
                       {/* Dropdown arrow */}
-                      <div 
-                        className="absolute top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-night-green"
-                      />
-                      <div 
+                      <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-night-green" />
+                      <div
                         className="relative rounded-sm overflow-hidden min-w-[240px]"
                         style={{
-                          background: 'linear-gradient(180deg, hsl(155 22% 16%) 0%, hsl(155 22% 20%) 100%)',
-                          boxShadow: '0 25px 60px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)'
+                          background: "linear-gradient(180deg, hsl(155 22% 16%) 0%, hsl(155 22% 20%) 100%)",
+                          boxShadow:
+                            "0 25px 60px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)",
                         }}
                       >
                         {/* Decorative top accent line */}
                         <div className="h-[2px] bg-gradient-to-r from-transparent via-pear to-transparent" />
-                        
+
                         <div className="py-3">
                           {item.children.map((child, index) => (
                             <button
@@ -196,7 +198,7 @@ export function Header() {
                             </button>
                           ))}
                         </div>
-                        
+
                         {/* Decorative bottom accent line */}
                         <div className="h-[2px] bg-gradient-to-r from-transparent via-slate-moss/50 to-transparent" />
                       </div>
@@ -213,8 +215,8 @@ export function Header() {
                   "shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]",
                   "hover:-translate-y-0.5",
                   shouldUseTransparentHeader
-                    ? "bg-pear/90 text-night-green hover:bg-pear border border-pear/50" 
-                    : "bg-night-green text-ivory hover:bg-slate-moss"
+                    ? "bg-pear/90 text-night-green hover:bg-pear border border-pear/50"
+                    : "bg-night-green text-ivory hover:bg-slate-moss",
                 )}
                 size="sm"
               >
@@ -224,15 +226,13 @@ export function Header() {
 
             {/* Mobile Menu Button - Only show when menu is closed */}
             {!isMobileMenuOpen && (
-              <button
-                className="lg:hidden p-2"
-                onClick={() => setIsMobileMenuOpen(true)}
-                aria-label="Open menu"
-              >
-                <Menu className={cn(
-                  "w-6 h-6 transition-colors duration-300",
-                  shouldUseTransparentHeader ? "text-ivory" : "text-night-green"
-                )} />
+              <button className="lg:hidden p-2" onClick={() => setIsMobileMenuOpen(true)} aria-label="Open menu">
+                <Menu
+                  className={cn(
+                    "w-6 h-6 transition-colors duration-300",
+                    shouldUseTransparentHeader ? "text-ivory" : "text-night-green",
+                  )}
+                />
               </button>
             )}
           </nav>
@@ -242,7 +242,7 @@ export function Header() {
       {/* Mobile Menu - Elite Off-Canvas Experience */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -250,31 +250,35 @@ export function Header() {
             className="fixed inset-0 z-[9999] lg:hidden overflow-hidden"
           >
             {/* Rich gradient background */}
-            <motion.div 
+            <motion.div
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               exit={{ scale: 1.1 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0"
-              style={{ 
-                background: 'linear-gradient(145deg, hsl(155 22% 18%) 0%, hsl(155 20% 22%) 35%, hsl(155 18% 28%) 65%, hsl(155 15% 32%) 100%)'
+              style={{
+                background:
+                  "linear-gradient(145deg, hsl(155 22% 18%) 0%, hsl(155 20% 22%) 35%, hsl(155 18% 28%) 65%, hsl(155 15% 32%) 100%)",
               }}
             />
 
             {/* Decorative gradient orbs */}
-            <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[50%] opacity-30 blur-3xl"
+            <div
+              className="absolute top-[-10%] right-[-10%] w-[60%] h-[50%] opacity-30 blur-3xl"
               style={{
-                background: 'radial-gradient(ellipse at center, hsl(72 68% 72% / 0.4) 0%, transparent 70%)'
+                background: "radial-gradient(ellipse at center, hsl(72 68% 72% / 0.4) 0%, transparent 70%)",
               }}
             />
-            <div className="absolute bottom-[-5%] left-[-10%] w-[50%] h-[40%] opacity-20 blur-3xl"
+            <div
+              className="absolute bottom-[-5%] left-[-10%] w-[50%] h-[40%] opacity-20 blur-3xl"
               style={{
-                background: 'radial-gradient(ellipse at center, hsl(72 68% 72% / 0.3) 0%, transparent 70%)'
+                background: "radial-gradient(ellipse at center, hsl(72 68% 72% / 0.3) 0%, transparent 70%)",
               }}
             />
-            <div className="absolute top-[40%] left-[20%] w-[30%] h-[30%] opacity-10 blur-2xl"
+            <div
+              className="absolute top-[40%] left-[20%] w-[30%] h-[30%] opacity-10 blur-2xl"
               style={{
-                background: 'radial-gradient(ellipse at center, hsl(60 30% 97% / 0.2) 0%, transparent 70%)'
+                background: "radial-gradient(ellipse at center, hsl(60 30% 97% / 0.2) 0%, transparent 70%)",
               }}
             />
 
@@ -301,38 +305,37 @@ export function Header() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="absolute top-8 left-8"
             >
-              <img 
-                src={logoLockup} 
-                alt="District Interiors" 
-                className="h-14 w-auto"
-              />
+              <img src={logoLockup} alt="District Interiors" className="h-14 w-auto" />
             </motion.div>
 
             {/* Menu Content - Centered */}
             <div className="relative flex flex-col items-center justify-center min-h-full px-8 py-28">
               <nav className="w-full max-w-sm">
                 {navItems.map((item, index) => (
-                  <motion.div 
+                  <motion.div
                     key={item.label}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.5, 
+                    transition={{
+                      duration: 0.5,
                       delay: 0.2 + index * 0.08,
-                      ease: [0.22, 1, 0.36, 1]
+                      ease: [0.22, 1, 0.36, 1],
                     }}
                   >
                     {/* Gradient separator - before first item */}
                     {index === 0 && (
-                      <motion.div 
+                      <motion.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{ duration: 0.6, delay: 0.15 }}
                         className="h-[1px] mb-4 origin-center"
-                        style={{ background: 'linear-gradient(90deg, transparent 0%, hsl(72 68% 72% / 0.4) 50%, transparent 100%)' }}
+                        style={{
+                          background:
+                            "linear-gradient(90deg, transparent 0%, hsl(72 68% 72% / 0.4) 50%, transparent 100%)",
+                        }}
                       />
                     )}
-                    
+
                     <button
                       onClick={() => {
                         handleNavClick(item);
@@ -343,11 +346,11 @@ export function Header() {
                       {/* Hover background effect */}
                       <span className="absolute inset-0 bg-gradient-to-r from-transparent via-pear/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                       <span className="absolute inset-0 bg-gradient-to-b from-ivory/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                      
+
                       {/* Side accent bars on hover */}
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 w-0 h-[2px] bg-gradient-to-r from-pear to-transparent group-hover:w-8 transition-all duration-500" />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 w-0 h-[2px] bg-gradient-to-l from-pear to-transparent group-hover:w-8 transition-all duration-500" />
-                      
+
                       <span className="relative text-2xl sm:text-3xl font-heading text-ivory/90 tracking-wide uppercase transition-all duration-300 group-hover:text-pear group-hover:tracking-widest">
                         {item.label}
                       </span>
@@ -355,9 +358,9 @@ export function Header() {
 
                     {/* Submenu items */}
                     {item.children && (
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
+                        animate={{ opacity: 1, height: "auto" }}
                         transition={{ duration: 0.4, delay: 0.3 + index * 0.08 }}
                         className="space-y-1 pb-3"
                       >
@@ -366,9 +369,9 @@ export function Header() {
                             key={child.label}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ 
-                              duration: 0.4, 
-                              delay: 0.35 + index * 0.08 + childIndex * 0.05 
+                            transition={{
+                              duration: 0.4,
+                              delay: 0.35 + index * 0.08 + childIndex * 0.05,
                             }}
                             onClick={() => {
                               navigate(child.href);
@@ -378,7 +381,7 @@ export function Header() {
                           >
                             {/* Subtle hover bg for submenu */}
                             <span className="absolute inset-0 bg-ivory/5 opacity-0 group-hover/sub:opacity-100 transition-opacity duration-300 rounded" />
-                            
+
                             <span className="relative text-sm sm:text-base font-nav text-ivory/60 uppercase tracking-[0.15em] transition-all duration-300 group-hover/sub:text-pear group-hover/sub:tracking-[0.25em]">
                               {child.label}
                             </span>
@@ -388,12 +391,15 @@ export function Header() {
                     )}
 
                     {/* Gradient separator - after each item */}
-                    <motion.div 
+                    <motion.div
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: 0.6, delay: 0.2 + index * 0.08 }}
                       className="h-[1px] mt-1 origin-center"
-                      style={{ background: 'linear-gradient(90deg, transparent 0%, hsl(72 68% 72% / 0.25) 50%, transparent 100%)' }}
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent 0%, hsl(72 68% 72% / 0.25) 50%, transparent 100%)",
+                      }}
                     />
                   </motion.div>
                 ))}
@@ -427,10 +433,13 @@ export function Header() {
                 transition={{ duration: 0.5, delay: 0.8 }}
                 className="absolute bottom-8 left-0 right-0 text-center"
               >
-                <div className="h-[1px] w-24 mx-auto mb-4" style={{ background: 'linear-gradient(90deg, transparent 0%, hsl(72 68% 72% / 0.3) 50%, transparent 100%)' }} />
-                <p className="text-[11px] font-nav uppercase tracking-[0.3em] text-ivory/40">
-                  Crafting Green Spaces
-                </p>
+                <div
+                  className="h-[1px] w-24 mx-auto mb-4"
+                  style={{
+                    background: "linear-gradient(90deg, transparent 0%, hsl(72 68% 72% / 0.3) 50%, transparent 100%)",
+                  }}
+                />
+                <p className="text-[11px] font-nav uppercase tracking-[0.3em] text-ivory/40">Crafting Green Spaces</p>
               </motion.div>
             </div>
           </motion.div>
