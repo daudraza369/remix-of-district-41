@@ -1,9 +1,9 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState, useRef, useEffect } from 'react';
-import { Play } from 'lucide-react';
+import { Play, X, Volume2, VolumeX } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 // Fallback images for static demo projects
@@ -91,15 +91,92 @@ interface Project {
   display_order: number;
 }
 
+// Video Modal Component
+const VideoModal = ({ 
+  project, 
+  onClose 
+}: { 
+  project: Project; 
+  onClose: () => void;
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-night-green/95 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative max-w-4xl w-full max-h-[90vh] mx-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute -top-12 right-0 text-ivory/80 hover:text-ivory transition-colors z-10"
+        >
+          <X className="w-8 h-8" />
+        </button>
+
+        {/* Mute toggle */}
+        <button
+          onClick={() => {
+            setIsMuted(!isMuted);
+            if (videoRef.current) {
+              videoRef.current.muted = !isMuted;
+            }
+          }}
+          className="absolute -top-12 right-12 text-ivory/80 hover:text-ivory transition-colors z-10"
+        >
+          {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+        </button>
+
+        {/* Video */}
+        <video
+          ref={videoRef}
+          src={project.video_url!}
+          className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+          controls
+          autoPlay
+          playsInline
+          poster={project.hero_image || undefined}
+        />
+
+        {/* Project info */}
+        <div className="mt-4 text-center">
+          <h3 className="text-ivory text-xl font-heading">{project.title}</h3>
+          <p className="text-pear/80 text-sm">{project.location}</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 // Interactive project card with magnetic hover effect
 const ProjectCard = ({ 
   project, 
   index, 
-  isVisible 
+  isVisible,
+  onPlayClick
 }: { 
   project: Project; 
   index: number; 
   isVisible: boolean;
+  onPlayClick: (project: Project) => void;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -127,6 +204,13 @@ const ProjectCard = ({
     setIsHovered(true);
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handlePlayClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (project.video_url) {
+      onPlayClick(project);
     }
   };
 
@@ -236,18 +320,21 @@ const ProjectCard = ({
           transition={{ duration: 0.3, delay: 0.1 }}
         />
 
-        {/* Video play indicator */}
+        {/* Video play button - centered absolutely */}
         {hasVideo && (
-          <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ 
-              scale: isHovered ? 1 : 0.8, 
-              opacity: isHovered ? 1 : 0.7 
-            }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="relative">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <motion.button
+              onClick={handlePlayClick}
+              className="pointer-events-auto relative"
+              initial={{ scale: 0.8, opacity: 0.7 }}
+              animate={{ 
+                scale: isHovered ? 1 : 0.8, 
+                opacity: isHovered ? 1 : 0.7 
+              }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
               {/* Pulsing ring */}
               <motion.div 
                 className="absolute inset-0 rounded-full bg-pear/30"
@@ -261,11 +348,11 @@ const ProjectCard = ({
                   ease: "easeInOut"
                 }}
               />
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-ivory/20 backdrop-blur-md flex items-center justify-center border border-ivory/30 group-hover:bg-pear/90 group-hover:border-pear transition-all duration-500">
-                <Play className="w-6 h-6 md:w-8 md:h-8 text-ivory ml-1 group-hover:text-night-green transition-colors duration-500" />
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-ivory/20 backdrop-blur-md flex items-center justify-center border border-ivory/30 hover:bg-pear/90 hover:border-pear transition-all duration-500">
+                <Play className="w-6 h-6 md:w-8 md:h-8 text-ivory ml-1 group-hover:text-night-green transition-colors duration-500" fill="currentColor" />
               </div>
-            </div>
-          </motion.div>
+            </motion.button>
+          </div>
         )}
 
         {/* Content */}
@@ -334,6 +421,7 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeVideoProject, setActiveVideoProject] = useState<Project | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Fetch projects from database
@@ -376,6 +464,17 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-ivory">
       <Header />
+      
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideoProject && activeVideoProject.video_url && (
+          <VideoModal 
+            project={activeVideoProject} 
+            onClose={() => setActiveVideoProject(null)} 
+          />
+        )}
+      </AnimatePresence>
+
       <main>
         {/* Hero Section with parallax */}
         <section ref={heroRef.ref} className="relative py-32 md:py-40 bg-night-green overflow-hidden">
@@ -485,6 +584,7 @@ const Projects = () => {
                       project={project} 
                       index={index}
                       isVisible={gridRef.isVisible}
+                      onPlayClick={setActiveVideoProject}
                     />
                   ))}
                 </motion.div>
