@@ -87,7 +87,7 @@ export function ProblemFramingSection() {
           </h2>
           
           <p className="text-xl md:text-2xl text-stone/80 leading-relaxed max-w-3xl mx-auto">
-            Bland interiors don't just look uninspiring—they actively drain productivity, 
+            Bland interiors don't just look uninspiring. They actively drain productivity, 
             increase turnover, and diminish your brand's perceived value.
           </p>
         </motion.div>
@@ -147,7 +147,7 @@ export function ProblemFramingSection() {
           className="text-center mt-20"
         >
           <p className="text-xl text-stone/60 italic">
-            "The absence of nature in a space isn't neutral—it's negative."
+            "The absence of nature in a space isn't neutral. It's negative."
           </p>
         </motion.div>
       </div>

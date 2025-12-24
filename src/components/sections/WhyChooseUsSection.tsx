@@ -26,7 +26,7 @@ const features = [
   {
     icon: Building2,
     title: 'End-to-End Service',
-    description: 'From concept to installation to ongoing care—we handle everything.',
+    description: 'From concept to installation to ongoing care, we handle everything.',
   },
 ];
 
