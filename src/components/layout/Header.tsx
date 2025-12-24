@@ -97,10 +97,10 @@ export function Header() {
               : "transparent",
         }}
       >
-        <div className="container-luxury px-6 md:px-12 lg:px-20">
+        <div className="w-full px-6 md:px-10 lg:px-12 xl:px-16">
           <nav className="flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="relative z-[60] flex flex-col items-center group shrink-0 mr-6 xl:mr-10">
+            {/* Logo - Fixed width for balance */}
+            <Link to="/" className="relative z-[60] flex flex-col items-center group shrink-0 w-[60px] md:w-[70px] lg:w-[80px]">
               {/* Transparent header: show pear brandmark */}
               <img
                 src={logoBrandmarkPear}
@@ -121,8 +121,8 @@ export function Header() {
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9">
+            {/* Desktop Navigation - Centered */}
+            <div className="hidden lg:flex items-center justify-center flex-1 gap-4 xl:gap-6 2xl:gap-8">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -134,8 +134,8 @@ export function Header() {
                     <button
                       onClick={() => handleNavClick(item)}
                       className={cn(
-                        "flex items-center gap-1.5 font-nav font-bold uppercase tracking-[0.12em] transition-all duration-300 relative",
-                        "text-[14px] xl:text-[15px] 2xl:text-[16px]",
+                        "flex items-center gap-1 font-nav font-bold uppercase tracking-[0.1em] transition-all duration-300 relative whitespace-nowrap",
+                        "text-[13px] xl:text-[14px] 2xl:text-[15px]",
                         "before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[1.5px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300",
                         shouldUseTransparentHeader
                           ? "text-ivory hover:text-pear before:bg-pear"
@@ -148,7 +148,7 @@ export function Header() {
                       {item.label}
                       <ChevronDown
                         className={cn(
-                          "w-4 h-4 xl:w-[18px] xl:h-[18px] transition-transform duration-300",
+                          "w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300",
                           activeDropdown === item.label && "rotate-180",
                         )}
                       />
@@ -157,8 +157,8 @@ export function Header() {
                     <button
                       onClick={() => handleNavClick(item)}
                       className={cn(
-                        "flex items-center gap-1 font-nav font-bold uppercase tracking-[0.12em] transition-all duration-300 relative whitespace-nowrap",
-                        "text-[14px] xl:text-[15px] 2xl:text-[16px]",
+                        "flex items-center gap-1 font-nav font-bold uppercase tracking-[0.1em] transition-all duration-300 relative whitespace-nowrap",
+                        "text-[13px] xl:text-[14px] 2xl:text-[15px]",
                         "before:absolute before:-bottom-1 before:left-0 before:w-full before:h-[1.5px] before:origin-right before:scale-x-0 before:transition-transform before:duration-300",
                         shouldUseTransparentHeader
                           ? "text-ivory hover:text-pear before:bg-pear"
@@ -211,12 +211,14 @@ export function Header() {
                   )}
                 </div>
               ))}
+            </div>
 
-              {/* CTA Button */}
+            {/* CTA Button - Fixed width for balance */}
+            <div className="hidden lg:flex items-center justify-end w-[200px] xl:w-[220px]">
               <Button
                 onClick={handleConsultation}
                 className={cn(
-                  "font-heading text-xs tracking-wider uppercase transition-all duration-500",
+                  "font-heading text-[11px] xl:text-xs tracking-wider uppercase transition-all duration-500 px-4 xl:px-5",
                   "shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]",
                   "hover:-translate-y-0.5",
                   shouldUseTransparentHeader
