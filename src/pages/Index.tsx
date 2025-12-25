@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { ProblemFramingSection } from '@/components/sections/ProblemFramingSection';
+import { ExpertQuotesCarousel } from '@/components/sections/ExpertQuotesCarousel';
 import { OurApproachSection } from '@/components/sections/OurApproachSection';
 import { WhyChooseUsSection } from '@/components/sections/WhyChooseUsSection';
 import { ClientLogosSection } from '@/components/sections/ClientLogosSection';
@@ -35,6 +36,9 @@ const Index = () => {
         
         {/* Problem framing - Create urgency */}
         <ProblemFramingSection />
+        
+        {/* Expert quotes carousel */}
+        <ExpertQuotesCarousel />
         
         {/* Solution - Our unique approach */}
         <OurApproachSection />
