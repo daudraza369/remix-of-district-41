@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { AlertTriangle, Brain, TrendingDown, Users } from 'lucide-react';
 
@@ -30,23 +30,6 @@ const problems = [
   },
 ];
 
-const quotes = [
-  {
-    text: "It is a misconception that a 'clean' desk equals a focused mind. We found that simply enriching a sterile space with plants increased productivity by 15%.",
-    author: 'Dr. Chris Knight',
-    title: 'University of Exeter',
-  },
-  {
-    text: "We have exiled nature from our daily lives, and it is costing us our health and happiness. The absence of nature is not a neutral condition. It is a deprivation.",
-    author: 'Stephen R. Kellert',
-    title: 'Pioneer of Biophilic Design, Yale Professor',
-  },
-  {
-    text: "No one creates their best work in a beige box. If you want your team to thrive, you have to build a habitat, not just an office.",
-    author: 'Biophilic Design Principles',
-    title: '',
-  },
-];
 
 export function ProblemFramingSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
@@ -175,43 +158,10 @@ export function ProblemFramingSection() {
           ))}
         </div>
 
-        {/* Quotes section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-24 max-w-4xl mx-auto"
-        >
-          <div className="space-y-12">
-            {quotes.map((quote, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1 + index * 0.2 }}
-                className="relative"
-              >
-                <div className="relative pl-6 border-l-2 border-pear/30">
-                  <p className="text-lg md:text-xl text-stone/80 italic leading-relaxed mb-3">
-                    "{quote.text}"
-                  </p>
-                  <p className="text-sm text-pear font-nav">
-                    {quote.author}
-                    {quote.title && (
-                      <span className="text-stone/50 font-sans ml-2">
-                        {quote.title}
-                      </span>
-                    )}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-moss/20 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-deep-forest to-transparent pointer-events-none" />
     </section>
   );
 }
