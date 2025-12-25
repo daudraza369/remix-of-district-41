@@ -1,68 +1,120 @@
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+
+// Import local logo assets
+import amazonLogo from '@/assets/logos/amazon.png';
+import linklatersLogo from '@/assets/logos/linklaters.png';
+import pepsicoLogo from '@/assets/logos/pepsico.png';
+import tahakomLogo from '@/assets/logos/tahakom.svg';
+import simahLogo from '@/assets/logos/simah.png';
 
 interface ClientLogo {
   id: string;
   client_name: string;
   logo_url: string;
   website_url: string | null;
-  display_order: number;
 }
+
+// Static client logos data
+const clientLogos: ClientLogo[] = [
+  {
+    id: '1',
+    client_name: 'Amazon',
+    logo_url: amazonLogo,
+    website_url: 'https://amazon.com',
+  },
+  {
+    id: '2',
+    client_name: 'Tharawat',
+    logo_url: '', // Placeholder - needs logo file
+    website_url: 'https://tharawat.org',
+  },
+  {
+    id: '3',
+    client_name: 'Bain & Company',
+    logo_url: '', // Placeholder - needs logo file
+    website_url: 'https://bain.com',
+  },
+  {
+    id: '4',
+    client_name: 'AviLease',
+    logo_url: '', // Placeholder - needs logo file
+    website_url: 'https://avilease.com',
+  },
+  {
+    id: '5',
+    client_name: 'Linklaters',
+    logo_url: linklatersLogo,
+    website_url: 'https://linklaters.com',
+  },
+  {
+    id: '6',
+    client_name: 'Tahakom',
+    logo_url: tahakomLogo,
+    website_url: 'https://tahakom.com',
+  },
+  {
+    id: '7',
+    client_name: 'Abunayyan Holding',
+    logo_url: '', // Placeholder - needs logo file
+    website_url: 'https://abunayyanholding.com',
+  },
+  {
+    id: '8',
+    client_name: 'SIMAH',
+    logo_url: simahLogo,
+    website_url: 'https://simah.com',
+  },
+  {
+    id: '9',
+    client_name: 'PepsiCo',
+    logo_url: pepsicoLogo,
+    website_url: 'https://pepsico.com',
+  },
+];
 
 export function ClientLogosSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
-  const [clients, setClients] = useState<ClientLogo[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchClients() {
-      const { data, error } = await supabase
-        .from('client_logos')
-        .select('*')
-        .eq('is_published', true)
-        .order('display_order', { ascending: true });
-
-      if (!error && data) {
-        setClients(data);
-      }
-      setLoading(false);
-    }
-
-    fetchClients();
-  }, []);
 
   // Quadruple for seamless loop
-  const repeatedClients = [...clients, ...clients, ...clients, ...clients];
-
-  // Don't render section if no clients
-  if (!loading && clients.length === 0) {
-    return null;
-  }
+  const repeatedClients = [...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos];
 
   const LogoItem = ({ client }: { client: ClientLogo }) => (
     <div className="flex-shrink-0 mx-10 md:mx-14 lg:mx-20 flex items-center justify-center group">
       <div className="w-32 md:w-40 h-16 flex items-center justify-center">
-        {client.website_url ? (
-          <a 
-            href={client.website_url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-full h-full"
-          >
+        {client.logo_url ? (
+          client.website_url ? (
+            <a 
+              href={client.website_url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-full h-full"
+            >
+              <img
+                src={client.logo_url}
+                alt={client.client_name}
+                className="max-w-full max-h-10 md:max-h-12 object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+              />
+            </a>
+          ) : (
             <img
               src={client.logo_url}
               alt={client.client_name}
               className="max-w-full max-h-10 md:max-h-12 object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
             />
-          </a>
+          )
         ) : (
-          <img
-            src={client.logo_url}
-            alt={client.client_name}
-            className="max-w-full max-h-10 md:max-h-12 object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-          />
+          // Text fallback for missing logos
+          <a 
+            href={client.website_url || '#'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-full h-full"
+          >
+            <span className="text-sm md:text-base font-nav uppercase tracking-wider text-slate-moss/40 group-hover:text-night-green transition-colors duration-500 whitespace-nowrap">
+              {client.client_name}
+            </span>
+          </a>
         )}
       </div>
     </div>
@@ -112,23 +164,17 @@ export function ClientLogosSection() {
         />
 
         {/* Scrolling container */}
-        {loading ? (
-          <div className="flex justify-center py-8">
-            <div className="text-slate-moss/30 text-sm font-nav uppercase tracking-widest">Loading...</div>
-          </div>
-        ) : (
-          <div 
-            className="flex items-center py-6 hover:[animation-play-state:paused]"
-            style={{
-              animation: 'logo-scroll 35s linear infinite',
-              width: 'fit-content'
-            }}
-          >
-            {repeatedClients.map((client, index) => (
-              <LogoItem key={`${client.id}-${index}`} client={client} />
-            ))}
-          </div>
-        )}
+        <div 
+          className="flex items-center py-6 hover:[animation-play-state:paused]"
+          style={{
+            animation: 'logo-scroll 35s linear infinite',
+            width: 'fit-content'
+          }}
+        >
+          {repeatedClients.map((client, index) => (
+            <LogoItem key={`${client.id}-${index}`} client={client} />
+          ))}
+        </div>
       </motion.div>
 
       {/* Inline keyframes */}
