@@ -1,32 +1,40 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { AlertTriangle, Brain, TrendingDown, Users } from 'lucide-react';
+import { AlertTriangle, Brain, TrendingDown, Flame, CalendarX } from 'lucide-react';
 
 const problems = [
   {
     icon: Brain,
+    headline: 'Brainpower is Stifled',
     stat: '61%',
     label: 'Lower Cognitive Scores',
-    description: 'Harvard researchers found that employees in conventional offices scored 61% lower on cognitive tests than those in green, enhanced environments.',
+    description: 'Harvard researchers found that employees in sterile, conventional offices scored 61% lower on cognitive function tests compared to those in green, enhanced environments.',
     source: 'Harvard T.H. Chan School of Public Health',
-    category: 'Brainpower is Stifled',
   },
   {
     icon: TrendingDown,
+    headline: 'Output is Lost',
     stat: '15%',
     label: 'Productivity Gap',
-    description: '"Lean" minimalist offices do not help focus. Adding plants alone has been proven to boost productivity by 15%.',
+    description: '"Lean" minimalist offices don\'t help focus—they hurt it. University of Exeter found that simply adding plants to a bare office increases productivity by 15%.',
     source: 'University of Exeter',
-    category: 'Output is Lost',
   },
   {
-    icon: Users,
-    stat: '15%',
-    label: 'Lower Well-being',
-    description: 'Employees in spaces without natural elements report 15% lower well-being and higher anxiety levels, driving hidden turnover costs.',
-    source: 'Human Spaces Global Report',
-    category: 'Talent Burns Out',
+    icon: Flame,
+    headline: 'Talent Burns Out',
+    stat: '37%',
+    label: 'Higher Tension Levels',
+    description: 'Without natural release points, employee tension and anxiety levels remain 37% higher, fueling burnout and hidden turnover costs.',
+    source: 'University of Technology Sydney (UTS)',
+  },
+  {
+    icon: CalendarX,
+    headline: 'Sick Leave Spikes',
+    stat: '60%',
+    label: 'More Sick Days',
+    description: 'Poor indoor air quality and lack of greenery are linked to higher illness rates. Offices with plants can reduce sick leave absences by up to 60%.',
+    source: 'Green Building Council of Australia',
   },
 ];
 
@@ -99,8 +107,8 @@ export function ProblemFramingSection() {
           </p>
         </motion.div>
 
-        {/* Problem stats grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Problem stats grid - 2x2 layout */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {problems.map((problem, index) => (
             <motion.div
               key={problem.label}
@@ -108,12 +116,12 @@ export function ProblemFramingSection() {
               animate={isVisible ? { opacity: 1, y: 0, filter: 'blur(0)' } : {}}
               transition={{
                 duration: 0.8,
-                delay: 0.2 + index * 0.15,
+                delay: 0.2 + index * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="group relative"
             >
-              <div className="relative p-8 rounded-sm bg-night-green/50 backdrop-blur-sm border border-ivory/5 hover:border-pear/30 transition-all duration-500 h-full flex flex-col">
+              <div className="relative p-6 md:p-8 rounded-sm bg-night-green/50 backdrop-blur-sm border border-ivory/5 hover:border-pear/30 transition-all duration-500 h-full flex flex-col">
                 {/* Hover glow */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-sm">
                   <div 
@@ -125,24 +133,28 @@ export function ProblemFramingSection() {
                 </div>
 
                 <div className="relative z-10 flex flex-col h-full">
-                  {/* Category badge */}
-                  <span className="text-xs text-pear/70 uppercase tracking-widest font-nav mb-4">
-                    {problem.category}
-                  </span>
-                  
-                  <div className="w-12 h-12 rounded-full bg-pear/10 flex items-center justify-center mb-6 group-hover:bg-pear/20 transition-colors duration-300">
-                    <problem.icon className="w-6 h-6 text-pear" />
+                  {/* Header row with icon and headline */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-pear/10 flex items-center justify-center group-hover:bg-pear/20 transition-colors duration-300 flex-shrink-0">
+                      <problem.icon className="w-6 h-6 text-pear" />
+                    </div>
+                    <span className="text-sm text-pear uppercase tracking-widest font-nav">
+                      {problem.headline}
+                    </span>
                   </div>
                   
-                  <div className="text-5xl md:text-6xl font-heading text-ivory mb-2">
+                  {/* Stat */}
+                  <div className="text-5xl md:text-6xl lg:text-7xl font-heading text-ivory mb-2">
                     {problem.stat}
                   </div>
                   
-                  <p className="text-lg text-pear font-nav uppercase tracking-wide mb-3">
+                  {/* Label */}
+                  <p className="text-base md:text-lg text-pear font-nav uppercase tracking-wide mb-4">
                     {problem.label}
                   </p>
                   
-                  <p className="text-stone/70 text-sm leading-relaxed flex-grow mb-4">
+                  {/* Description */}
+                  <p className="text-stone/70 text-sm md:text-base leading-relaxed flex-grow mb-4">
                     {problem.description}
                   </p>
                   
