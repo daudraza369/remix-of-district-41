@@ -55,12 +55,12 @@ export function ProblemFramingSection() {
       ref={sectionRef}
       className="relative py-20 md:py-28 lg:py-36 overflow-hidden bg-deep-forest content-auto"
     >
-      {/* Simplified parallax background - GPU accelerated */}
+      {/* Simplified parallax background - GPU accelerated, unified color */}
       <motion.div 
-        className="absolute inset-0 opacity-30 transform-gpu"
+        className="absolute inset-0 opacity-20 transform-gpu"
         style={{ y: backgroundY }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-night-green via-deep-forest to-night-green" />
+        <div className="absolute inset-0 bg-deep-forest" />
       </motion.div>
 
       {/* Simplified grid pattern - hidden on mobile for performance */}
