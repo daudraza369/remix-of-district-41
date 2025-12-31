@@ -110,9 +110,9 @@ export function HeroSection() {
         className="relative z-30 min-h-screen flex items-center"
         style={{ opacity }}
       >
-        <div className="w-full py-32 px-6 md:px-10 lg:px-[90px] xl:px-[90px] 2xl:px-[120px]">
-          {/* Content aligned with nav "DISTRICT" position */}
-          <div className="max-w-3xl">
+        <div className="container mx-auto px-6 md:px-10 lg:px-12 py-32">
+          {/* Centered content container - text left-aligned inside */}
+          <div className="max-w-3xl mx-auto lg:mx-0 lg:ml-[calc(50%-384px)]">
                 <AnimatePresence mode="wait">
                   <motion.div key={currentSlide}>
                     {/* Eyebrow text */}
@@ -220,9 +220,9 @@ export function HeroSection() {
                     {String(slides.length).padStart(2, '0')}
                   </span>
                 </motion.div>
-              </div>
-            </div>
-          </motion.div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Scroll indicator - simplified arrow only */}
       <motion.div
