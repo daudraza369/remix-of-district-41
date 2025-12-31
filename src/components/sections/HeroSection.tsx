@@ -10,19 +10,19 @@ const slides = [
   {
     image: heroImage,
     title: 'SPACES THAT BREATHE',
-    subtitle: 'Where Architecture Meets Nature',
+    subtitle: 'Where Interiors Meet Nature',
     description: 'We don\'t just add plants. We engineer environments that elevate human experience, productivity, and well-being.',
   },
   {
     image: hotelAtriumImg,
     title: 'BEYOND DECORATION',
-    subtitle: 'Strategic Biophilic Design',
+    subtitle: 'Where Interiors Meet Nature',
     description: 'Every installation is a considered response to space, light, and the people who inhabit it.',
   },
   {
     image: restaurantImg,
     title: 'CRAFTED ATMOSPHERES',
-    subtitle: 'From Vision to Reality',
+    subtitle: 'Where Interiors Meet Nature',
     description: 'Bespoke greenery solutions for hospitality, corporate, and residential environments.',
   },
 ];
@@ -110,16 +110,8 @@ export function HeroSection() {
         className="relative z-30 min-h-screen flex items-center"
         style={{ opacity }}
       >
-        <div className="container-luxury px-6 md:px-12 lg:px-20 py-32">
+        <div className="w-full px-6 md:px-10 lg:px-12 xl:px-16 py-32">
           <div className="max-w-4xl">
-            {/* Slide indicator line */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="w-20 h-0.5 bg-pear mb-8 origin-left"
-            />
-
             <AnimatePresence mode="wait">
               <motion.div key={currentSlide}>
                 {/* Eyebrow text */}
@@ -231,7 +223,7 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator - cinematic */}
+      {/* Scroll indicator - simplified arrow only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -249,9 +241,8 @@ export function HeroSection() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-10 h-10 rounded-full border border-ivory/30 flex items-center justify-center group-hover:border-pear transition-colors"
           >
-            <ArrowDown className="w-4 h-4 text-ivory/50 group-hover:text-pear transition-colors" />
+            <ArrowDown className="w-5 h-5 text-ivory/50 group-hover:text-pear transition-colors" />
           </motion.div>
         </motion.button>
       </motion.div>
