@@ -158,15 +158,8 @@ export function HeroSection() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Static value proposition */}
-            <motion.p
-              initial={{ opacity: 0, y: 40 }}
-              animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-body text-stone/70 mb-10 leading-relaxed max-w-2xl"
-            >
-              Trusted by leading hotels, corporate headquarters, and luxury residences across the region.
-            </motion.p>
+            {/* Spacer for CTAs */}
+            <div className="mb-10" />
 
             {/* CTA Buttons with magnetic hover */}
             <motion.div

@@ -17,7 +17,7 @@ const navItems = [
   { label: "DISTRICT", href: "/" },
   { label: "FLOWERS", href: "/flowers" },
   {
-    label: "Greenery",
+    label: "GREENERY",
     href: "/services",
     children: [
       { label: "PLANTSCAPING", href: "/services/plantscaping" },
@@ -28,9 +28,7 @@ const navItems = [
     ],
   },
   { label: "STYLING", href: "/styling" },
-  { label: "HOSPITALITY", href: "/hospitality" },
   { label: "COLLECTION", href: "/collection" },
-  { label: "PROJECTS", href: "/projects" },
 ];
 
 export function Header() {
@@ -146,12 +144,6 @@ export function Header() {
                       style={shouldUseTransparentHeader ? { textShadow: "0 2px 8px rgba(0,0,0,0.4)" } : undefined}
                     >
                       {item.label}
-                      <ChevronDown
-                        className={cn(
-                          "w-3.5 h-3.5 xl:w-4 xl:h-4 transition-transform duration-300",
-                          activeDropdown === item.label && "rotate-180",
-                        )}
-                      />
                     </button>
                   ) : (
                     <button
@@ -216,18 +208,21 @@ export function Header() {
             {/* CTA Button - Fixed width for balance */}
             <div className="hidden lg:flex items-center justify-end w-[200px] xl:w-[220px]">
               <Button
-                onClick={handleConsultation}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/projects");
+                }}
                 className={cn(
                   "font-heading text-[11px] xl:text-xs tracking-wider uppercase transition-all duration-500 px-4 xl:px-5",
                   "shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)]",
                   "hover:-translate-y-0.5",
                   shouldUseTransparentHeader
                     ? "bg-pear/90 text-night-green hover:bg-pear border border-pear/50"
-                    : "bg-night-green text-ivory hover:bg-slate-moss",
+                    : "bg-night-green text-ivory hover:bg-pear hover:text-night-green",
                 )}
                 size="sm"
               >
-                REQUEST A CONSULTATION
+                VIEW OUR PORTFOLIO
               </Button>
             </div>
 
@@ -422,12 +417,15 @@ export function Header() {
                 <Button
                   variant="default"
                   size="lg"
-                  onClick={handleConsultation}
-                  className="relative overflow-hidden group font-heading text-sm tracking-widest uppercase bg-pear text-night-green hover:bg-pear border-0 px-8 py-6 shadow-[0_0_40px_rgba(206,219,115,0.3)]"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/projects");
+                  }}
+                  className="relative overflow-hidden group font-heading text-sm tracking-widest uppercase bg-pear text-night-green hover:bg-pear border-0 px-8 py-6 shadow-[0_0_40px_rgba(206,219,115,0.3)] rounded-[6px]"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-ivory/30 via-ivory/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                   <span className="relative flex items-center gap-3 font-bold">
-                    REQUEST A CONSULTATION
+                    VIEW OUR PORTFOLIO
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </Button>
