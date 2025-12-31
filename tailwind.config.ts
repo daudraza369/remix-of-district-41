@@ -127,25 +127,26 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        // Cinematic animations - optimized without filter:blur
         "reveal-up": {
-          from: { opacity: "0", transform: "translateY(100px) scale(0.95)", filter: "blur(10px)" },
-          to: { opacity: "1", transform: "translateY(0) scale(1)", filter: "blur(0)" },
+          from: { opacity: "0", transform: "translateY(60px) scale(0.98)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
         },
         "reveal-left": {
-          from: { opacity: "0", transform: "translateX(-100px)", filter: "blur(8px)" },
-          to: { opacity: "1", transform: "translateX(0)", filter: "blur(0)" },
+          from: { opacity: "0", transform: "translateX(-60px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         "reveal-right": {
-          from: { opacity: "0", transform: "translateX(100px)", filter: "blur(8px)" },
-          to: { opacity: "1", transform: "translateX(0)", filter: "blur(0)" },
+          from: { opacity: "0", transform: "translateX(60px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         "scale-reveal": {
-          from: { opacity: "0", transform: "scale(0.8)", filter: "blur(5px)" },
-          to: { opacity: "1", transform: "scale(1)", filter: "blur(0)" },
+          from: { opacity: "0", transform: "scale(0.9)" },
+          to: { opacity: "1", transform: "scale(1)" },
         },
         "glow-pulse": {
-          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
-          "50%": { opacity: "0.8", transform: "scale(1.05)" },
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.7" },
         },
         "line-grow": {
           from: { transform: "scaleX(0)" },
